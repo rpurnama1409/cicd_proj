@@ -1,0 +1,20 @@
+name: Deploy to production
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: contention/rsync-deployments@v2.0.0
+        with:
+          FLAGS: -avzr --delete
+          EXCLUDES: --exclude .htaccess
+          USER: ${{ secrets.USER_PANEL }}
+          HOST: sadigit.co.id
+          REMOTEPATH: ${{ secrets.REMOTE_PATH }}
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
