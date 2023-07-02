@@ -2,6 +2,7 @@ on:
   push:
     branches:
       - master
+name: 🚀 Deploy production on push
 jobs:
   web-deploy:
     name: 🎉 Deploy-prod-serv
